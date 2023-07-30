@@ -2,6 +2,7 @@ import pandas as pd
 import win32com.client as win32
 from openpyxl import load_workbook
 import os
+import time
 
 # Load the xlsx file
 file_path = 'recipients.xlsx'
@@ -51,7 +52,7 @@ Rostlinolékařský pas naleznete v příloze. <br>
 '''
 
 # Specify the folder path containing the attachments
-attachments_folder = r'C:\Users\Martin\Desktop\mail_script\pdf'
+attachments_folder = r'C:\Users\Martin\Desktop\script\pdf'
 
 def send_email(recipient, bcc_recipient, attachment_name):
     outlook = win32.Dispatch('outlook.application')
@@ -71,11 +72,13 @@ def send_email(recipient, bcc_recipient, attachment_name):
             return
 
     mail.Send()
+    time.sleep(5)  # Wait for 5 seconds
 
 for _, row in email_list.iterrows():
     recipient = row['Email']
     bcc_recipient = 'martinpenkava1@gmail.com'
     attachment_name = row['Attachment']
+    print(f"Připravuji mail pro {recipient}...")  # Print the recipient of the current email
     send_email(recipient, bcc_recipient, attachment_name)
 
-print('Emails prepared successfully.')
+print('Emaily uspěšně odeslány.')

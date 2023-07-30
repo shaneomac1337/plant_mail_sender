@@ -1,0 +1,2 @@
+pokud se spustí přes spust_me.cmd, vytvoří se log, kde bude napsáno, kdo mail obdržel
+je potřeba změnit BCC adresáta a attachment folder ve scriptu :)
